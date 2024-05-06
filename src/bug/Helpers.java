@@ -14,6 +14,34 @@ public class Helpers {
     static double MT =2;
     static double SAFETY =0.8;
 
+    public static void goForward(Agent rob){
+        rob.setRotationalVelocity(0);
+        rob.setTranslationalVelocity(1);
+    }
+
+    public static void orientate(Agent rob, double leftIntensity, double rightIntensity){
+        rob.setRotationalVelocity((leftIntensity - rightIntensity) * 15);
+    }
+
+    public static void turnAround(Agent rob) {
+        rob.setRotationalVelocity(2);
+    }
+
+    public static void stopRobot(Agent rob) {
+        rob.setRotationalVelocity(0);
+        rob.setTranslationalVelocity(0);
+    }
+
+    public static void chooseAction(Agent rob, double centerIntensity, double leftIntensity, double rightIntensity) {
+        if (Math.abs(rightIntensity - leftIntensity) > 0.0001) {
+            orientate(rob, leftIntensity, rightIntensity);
+        } else if (centerIntensity > leftIntensity) {
+            turnAround(rob);
+        } else {
+            goForward(rob);
+        }
+    }
+
     public static Point3d getSensedPoint(Agent rob,RangeSensorBelt sonars,int sonar){
       double v;
       if(sonars.hasHit(sonar))
