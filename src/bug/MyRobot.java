@@ -9,16 +9,29 @@ import static bug.Helpers.circumNavigate;
 import static bug.Helpers.turnAround;
 import static bug.Helpers.goForward;
 import static bug.Helpers.orientate;
-import static bug.Helpers.chooseAction;
+//import static bug.Helpers.chooseAction;
 import static bug.Helpers.stopRobot;
 
 public class MyRobot extends Agent {
     LightSensor centerLight,rightLight,leftLight;
     RangeSensorBelt bumpers, sonars;
 
-    double intensity1, intensity2, intensity3, iL, iH;
+    double intensity1;
+    double intensity2;
+    double intensity3;
+    double iL;
+    double iH;
 
     boolean foundLocalMax;
+
+    public enum RobotStatus {
+        ORIENTATION,
+        FORWARD,
+        FOLLOWING,
+        END;
+    }
+
+    public static RobotStatus status;
 
 
 
@@ -29,10 +42,10 @@ public class MyRobot extends Agent {
         centerLight = RobotFactory.addLightSensor(this, new Vector3d(0,0.47,0), 0, "center");
         bumpers = RobotFactory.addBumperBeltSensor(this,8);
         sonars = RobotFactory.addSonarBeltSensor(this,8);
+        status = RobotStatus.ORIENTATION;
+
     }
     public void initBehavior() {
-        setTranslationalVelocity(0);
-        setRotationalVelocity(0);
         intensity1 = intensity2  = intensity3 = 0;
         foundLocalMax = false;
     }
@@ -48,40 +61,67 @@ public class MyRobot extends Agent {
         intensity3 = clIntensity;
 
 
-        boolean bumped = false;
-        // 1) Let iL = ht(x)
-        iL = bumped ? 1 : 0;
-        for (int i=0;i<sonars.getNumSensors();i++) {
-            if (sonars.getMeasurement(i) < 1) {
-                bumped = true;
-                if (iL != clIntensity)
-                    iH = clIntensity;
-                System.out.println("Bumper " + i + " has hit");
-            }
-        }
 
-
-        // Check if a local maximum is found
-        if (intensity2 > intensity1 && intensity2 > intensity3 && intensity3 > iL) {
-            foundLocalMax = true;
-            System.out.println("Local maximum found");
-        }
-
-            // 4) If iL != hi(x), then let iH = hi(x)
-//            if (iL != clIntensity) {
-//                iH = clIntensity;
-//            }
-
-        // 3) If hi(x) ~= 1, then stop
         if (1 - clIntensity < 0.202) {
-            stopRobot(this);
+            status = RobotStatus.END;
         }
-        else if (bumped ) {
-            circumNavigate(this, sonars, false);
+        switch (status) {
+            case ORIENTATION:
+                System.out.println("Orientate");
+                orientate(this, llIntensity, rlIntensity, clIntensity);
+                break;
+            case FORWARD:
+                System.out.println("Forward");
+                goForward(this, sonars,clIntensity);
+
+                break;
+            case FOLLOWING:
+                System.out.println("Following");
+                circumNavigate(this, sonars, false, clIntensity);
+
+                break;
+
+            case END:
+                stopRobot(this);
+                break;
         }
-        else {
-            chooseAction(this, clIntensity, llIntensity, rlIntensity);
-        }
+     //   iL = clIntensity;
+
+
+//        boolean bumped = false;
+//        // 1) Let iL = ht(x)
+//        iL = bumped ? 1 : 0;
+//        for (int i=0;i<sonars.getNumSensors();i++) {
+//            if (sonars.getMeasurement(i) < 1) {
+//                bumped = true;
+//                if (iL != clIntensity)
+//                    iH = clIntensity;
+//                System.out.println("Bumper " + i + " has hit");
+//            }
+//        }
+//
+//
+//        // Check if a local maximum is found
+//        if (intensity2 > intensity1 && intensity2 > intensity3 && intensity3 > iL) {
+//            foundLocalMax = true;
+//            System.out.println("Local maximum found");
+//        }
+//
+//            // 4) If iL != hi(x), then let iH = hi(x)
+////            if (iL != clIntensity) {
+////                iH = clIntensity;
+////            }
+//
+//        // 3) If hi(x) ~= 1, then stop
+//        if (1 - clIntensity < 0.202) {
+//            stopRobot(this);
+//        }
+//        else if (bumped ) {
+//            circumNavigate(this, sonars, false);
+//        }
+//        else {
+//            chooseAction(this, clIntensity, llIntensity, rlIntensity);
+//        }
 
 
 
