@@ -8,7 +8,7 @@ import javax.vecmath.Vector3d;
 
 
 public class Helpers {
-    static double K1 = 5;
+    static double K1 = 3;
     static double K2 = 0.8;
     static double K3 = 1;
     static double MT =2;
@@ -27,13 +27,16 @@ public class Helpers {
             rob.setStatus(MyRobot.RobotStatus.FOLLOWING);
     }
 
-    public static boolean bumped(RangeSensorBelt sonars){
-        for (int i=0;i<sonars.getNumSensors();i++) {
+    public static boolean bumped( RangeSensorBelt sonars){
+
+        int[] hits = {0,1,6,7};
+        for (int i : hits) {
             if (sonars.getMeasurement(i) < 1) {
                 System.out.println("Bumper " + i + " has hit");
                 return true;
             }
         }
+
         return false;
     }
 
@@ -41,8 +44,8 @@ public class Helpers {
         if (centerIntensity > leftIntensity) {
             rob.setRotationalVelocity(2);
         }
-        else if (Math.abs(rightIntensity - leftIntensity) > 0.0001) {
-            rob.setRotationalVelocity(Math.signum(leftIntensity - rightIntensity) * 1);
+        else if (Math.abs(rightIntensity - leftIntensity) > 0.001) {
+            rob.setRotationalVelocity(Math.signum(leftIntensity - rightIntensity));
         }
         else {
             rob.setStatus(MyRobot.RobotStatus.FORWARD);
@@ -59,7 +62,7 @@ public class Helpers {
         rob.setRotationalVelocity(2);
     }
 
-    public static void stopRobot(Agent rob) {
+    public static void stopRobot(MyRobot rob) {
         rob.setRotationalVelocity(0);
         rob.setTranslationalVelocity(0);
     }
@@ -74,7 +77,7 @@ public class Helpers {
 //        }
 //    }
 
-    public static Point3d getSensedPoint(Agent rob,RangeSensorBelt sonars,int sonar){
+    public static Point3d getSensedPoint(MyRobot rob,RangeSensorBelt sonars,int sonar){
       double v;
       if(sonars.hasHit(sonar))
         v=rob.getRadius()+sonars.getMeasurement(sonar);
@@ -91,7 +94,7 @@ public class Helpers {
             return a+Math.PI*2;
         return a;
     }
-    public static void circumNavigate(Agent rob, RangeSensorBelt sonars, boolean CLOCKWISE){
+    public static void circumNavigate(MyRobot rob, RangeSensorBelt sonars, boolean CLOCKWISE, double centerIntensity){
         int min;
         min=0;
 

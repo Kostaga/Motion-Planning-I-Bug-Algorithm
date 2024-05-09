@@ -45,9 +45,29 @@ public class MyRobot extends Agent {
         status = RobotStatus.ORIENTATION;
 
     }
+
+    public void setiL(double iL) {
+        this.iL = iL;
+    }
+
+    public double getiL() {
+        return this.iL;
+    }
+    public void setiH(double iH) {
+        this.iH = iH;
+    }
+    public double getiH() {
+        return this.iH;
+    }
+
+
+    public RobotStatus getStatus() {
+        return MyRobot.status;
+    }
     public void initBehavior() {
         intensity1 = intensity2  = intensity3 = 0;
         foundLocalMax = false;
+        iL = iH = 0;
     }
     public void performBehavior()
     {
@@ -78,7 +98,10 @@ public class MyRobot extends Agent {
             case FOLLOWING:
                 System.out.println("Following");
                 circumNavigate(this, sonars, false, clIntensity);
-
+                if (clIntensity > iH && intensity2 > intensity1 && intensity2 > intensity3) {
+                    MyRobot.status = RobotStatus.ORIENTATION;
+                    setiL(0);
+                }
                 break;
 
             case END:
