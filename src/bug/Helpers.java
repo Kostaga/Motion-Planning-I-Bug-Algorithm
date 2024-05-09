@@ -11,20 +11,20 @@ public class Helpers {
     static double K1 = 3;
     static double K2 = 0.8;
     static double K3 = 1;
-    static double MT =2;
-    static double SAFETY =0.8;
+
+    static double SAFETY = 0.8;
 
     public static void goForward(MyRobot rob, RangeSensorBelt sonars, double centerIntensity){
-        rob.setRotationalVelocity(0);
-        rob.setTranslationalVelocity(1);
+
+        rob.setTranslationalVelocity(5);
 
         if (rob.getiL() != centerIntensity)
             rob.setiH(centerIntensity);
-        if (!bumped(sonars))
-            rob.setStatus(MyRobot.RobotStatus.ORIENTATION);
+        if (bumped(sonars)) {
+            MyRobot.status = MyRobot.RobotStatus.FOLLOWING;
+            rob.setiL(1);
+        }
 
-        else
-            rob.setStatus(MyRobot.RobotStatus.FOLLOWING);
     }
 
     public static boolean bumped( RangeSensorBelt sonars){
@@ -41,6 +41,8 @@ public class Helpers {
     }
 
     public static void orientate(MyRobot rob, double leftIntensity, double rightIntensity, double centerIntensity){
+        rob.setTranslationalVelocity(0);
+
         if (centerIntensity > leftIntensity) {
             rob.setRotationalVelocity(2);
         }
@@ -48,7 +50,8 @@ public class Helpers {
             rob.setRotationalVelocity(Math.signum(leftIntensity - rightIntensity));
         }
         else {
-            rob.setStatus(MyRobot.RobotStatus.FORWARD);
+            rob.setRotationalVelocity(0);
+            MyRobot.status = MyRobot.RobotStatus.FORWARD;
         }
 
 
@@ -58,9 +61,9 @@ public class Helpers {
 //        rob.setRotationalVelocity((leftIntensity - rightIntensity) * 15);
 //    }
 
-    public static void turnAround(Agent rob) {
-        rob.setRotationalVelocity(2);
-    }
+//    public static void turnAround(MyRobot rob) {
+//        rob.setRotationalVelocity(2);
+//    }
 
     public static void stopRobot(MyRobot rob) {
         rob.setRotationalVelocity(0);
@@ -97,7 +100,6 @@ public class Helpers {
     public static void circumNavigate(MyRobot rob, RangeSensorBelt sonars, boolean CLOCKWISE, double centerIntensity){
         int min;
         min=0;
-
         for (int i=1;i<sonars.getNumSensors();i++)
             if (sonars.getMeasurement(i)<sonars.getMeasurement(min))
                 min=i;
@@ -113,6 +115,7 @@ public class Helpers {
 
         rob.setRotationalVelocity(K1*phRef);
         rob.setTranslationalVelocity(K2*Math.cos(phRef));
+
 
     }
 }

@@ -13,36 +13,17 @@ import javax.vecmath.*;
 import simbad.gui.*;
 import simbad.sim.*;
 
-//⣿⣿⣿⣿⣿⣿⣿⡿⠟⠋⠉⢁⣀⣀⣀⡈⠉⠛⢿⡿⠿⢿⣿⣿⣿
-//        ⣿⣿⣿⣿⣿⣿⠏⢀⣴⣾⣿⣿⣿⣿⣿⡟⠃⢀⣀⣤⣤⣄⠉⢿⣿
-//        ⣿⣿⣿⣿⣿⡏⠀⣾⣿⣿⣿⣿⣿⣿⠏⠀⣴⣿⣿⣿⣯⣻⣧⠀⢻
-//        ⣿⣿⣿⣿⣿⠁⢸⣿⣿⣿⣿⣿⣿⣿⠀⠸⣿⣿⣿⣿⣿⣿⣿⡇⠈
-//        ⣿⣿⣿⣿⡏⠀⣼⣿⣿⣿⣿⣿⣿⣿⣧⠀⠹⢿⣿⣿⣿⡿⠟⠀⣼
-//        ⣿⣿⣿⡿⠇⠀⠛⠿⣿⣿⣿⣿⣿⣿⣿⣷⣦⣀⡈⠉⠀⠀⣴⣿⣿
-//        ⣿⡿⠁⣀⢠⢤⣤⠀⠀⠉⢀⠀⠀⠈⠉⠻⢿⣿⣿⣿⡇⠀⣿⣿⣿
-//        ⡟⠀⣴⣽⣷⣷⠆⠀⣴⣾⣿⣔⡳⢦⡄⣄⣠⣿⣿⣿⡇⠀⣿⣿⣿
-//        ⠀⢰⣿⣿⣿⠇⠀⣼⣿⣿⣿⣿⣿⣷⣶⣿⣿⣿⣿⣿⣿⠀⢻⣿⣿
-//        ⠀⠸⣾⣿⣿⠀⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⢸⣿⣿
-//        ⣧⠀⠻⢿⣿⠀⠸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⠀⢸⣿⣿
-//        ⣿⣷⣤⣀⣈⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⠟⠙⣿⣿⣿⡏⠀⣼⣿⣿
-//        ⣿⣿⣿⣿⣿⡇⠀⣄⠀⠙⠛⠿⠿⠛⠁⢀⣼⣿⣿⣿⡇⠀⣿⣿⣿
-//        ⣿⣿⣿⣿⣿⣷⡀⠘⠿⠶⠀⢀⣤⣤⡀⠙⢿⣿⣿⡿⠁⢰⣿⣿⣿
-//        ⢻⣿⣿⣿⣿⣿⣿⣦⣤⣤⣴⣿⣿⣿⣷⣄⣀⠈⠁⣀⣠⣿⣿⣿⣿
-//        ⣹⣿⣿⣿⡿⢋⣩⣬⣩⣿⠃⣿⣿⣿⣿⢸⣿⡿⢋⣡⣬⣩⣿⣿⣿
-//        ⡗⣿⣿⣿⣧⣈⣛⠛⠻⣿⠀⣿⣿⣿⡿⢸⣿⣧⣈⣛⠛⠻⣿⣿⣿
-//        ⣿⣿⣿⣿⠹⣿⣿⡿⠂⣿⣇⠸⣿⣿⠃⣼⣿⠻⣿⣿⡿⠀⣿⣿⣿
-//        ⣿⣿⣿⣿⣶⣤⣤⣴⣾⣿⣿⣶⣤⣤⣾⣿⣿⣶⣤⣤⣴⣾⣿⣿⣿
 public class Env extends EnvironmentDescription {
     Env(){
         this.light1IsOn = true; // Goal Light
-        this.light1Position = new Vector3d(-8,2,0);
+        this.light1Position = new Vector3d(6,2,0);
         this.light2IsOn = false;
         this.ambientLightColor = new Color3f(0,0,0);
 //        spiral(this);
-        //spheres(this);
-        //bottle(this);
+//        spheres(this);
+//        bottle(this);
         box(this);
-        add(new MyRobot(new Vector3d(5, 0, 0), "robot 1"));
+        add(new MyRobot(new Vector3d(-6, 0, 0), "robot 1"));
     }
 
 
@@ -55,9 +36,6 @@ public class Env extends EnvironmentDescription {
         environment.add(new Box(new Vector3d(-3.25,0,3), new Vector3f(0.5f,1,3),environment));
 
         environment.add(new Box(new Vector3d(0,0,-4), new Vector3f(2,1,2),environment));
-
-        Point3d goal = new Point3d(0,0,-9);
-        environment.add(new MyRobot(new Vector3d(0,0,8),"my robot"));
     }
 
 
@@ -70,9 +48,6 @@ public class Env extends EnvironmentDescription {
     static void bottle(EnvironmentDescription environment){
         environment.add(new Box(new Vector3d(0,0,3), new Vector3f(5,1,5),environment));
         environment.add(new Box(new Vector3d(0,0,-0.5), new Vector3f(2,1,2),environment));
-
-        Point3d goal = new Point3d(0,0,-9);
-        environment.add(new MyRobot(new Vector3d(0,0,8),"my robot"));
     }
 
 
@@ -87,8 +62,6 @@ public class Env extends EnvironmentDescription {
         environment.add(new Box(new Vector3d(0,0,-5), new Vector3f(7,1,1),environment));
         environment.add(new Box(new Vector3d(-3.5,0,-2.5), new Vector3f(1,1,4),environment));
         environment.add(new Box(new Vector3d(-1.5,0,-1), new Vector3f(3,1,1),environment));
-        Point3d goal = new Point3d(-1,0,-3);
-        environment.add(new MyRobot(new Vector3d(0,0,8),"my robot"));
     }
 }
 

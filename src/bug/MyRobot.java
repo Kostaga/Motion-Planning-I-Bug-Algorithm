@@ -6,7 +6,6 @@ import simbad.sim.LightSensor;
 import simbad.sim.RangeSensorBelt;
 import simbad.sim.RobotFactory;
 import static bug.Helpers.circumNavigate;
-import static bug.Helpers.turnAround;
 import static bug.Helpers.goForward;
 import static bug.Helpers.orientate;
 //import static bug.Helpers.chooseAction;
@@ -22,13 +21,14 @@ public class MyRobot extends Agent {
     double iL;
     double iH;
 
+    double GOAL = 0.794;
     boolean foundLocalMax;
 
     public enum RobotStatus {
         ORIENTATION,
         FORWARD,
         FOLLOWING,
-        END;
+        END
     }
 
     public static RobotStatus status;
@@ -82,7 +82,7 @@ public class MyRobot extends Agent {
 
 
 
-        if (1 - clIntensity < 0.202) {
+        if (clIntensity > GOAL) {
             status = RobotStatus.END;
         }
         switch (status) {
