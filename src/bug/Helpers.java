@@ -47,7 +47,7 @@ public class Helpers {
             rob.setRotationalVelocity(2);
         }
         else if (Math.abs(rightIntensity - leftIntensity) > 0.001) {
-            rob.setRotationalVelocity(Math.signum(leftIntensity - rightIntensity));
+            rob.setRotationalVelocity(Math.signum(leftIntensity - rightIntensity) * 0.5);
         }
         else {
             rob.setRotationalVelocity(0);
