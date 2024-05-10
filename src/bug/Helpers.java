@@ -16,7 +16,7 @@ public class Helpers {
 
     public static void goForward(MyRobot rob, RangeSensorBelt sonars, double centerIntensity){
 
-        rob.setTranslationalVelocity(5);
+        rob.setTranslationalVelocity(3);
 
         if (rob.getiL() != centerIntensity)
             rob.setiH(centerIntensity);
@@ -32,7 +32,6 @@ public class Helpers {
         int[] hits = {0,1,6,7};
         for (int i : hits) {
             if (sonars.getMeasurement(i) < 1) {
-                System.out.println("Bumper " + i + " has hit");
                 return true;
             }
         }
@@ -43,11 +42,12 @@ public class Helpers {
     public static void orientate(MyRobot rob, double leftIntensity, double rightIntensity, double centerIntensity){
         rob.setTranslationalVelocity(0);
 
-        if (centerIntensity > leftIntensity) {
-            rob.setRotationalVelocity(2);
-        }
-        else if (Math.abs(rightIntensity - leftIntensity) > 0.001) {
+
+        if (Math.abs(rightIntensity - leftIntensity) > 0.001) {
             rob.setRotationalVelocity(Math.signum(leftIntensity - rightIntensity) * 0.5);
+        }
+        else if (centerIntensity > leftIntensity) {
+            rob.setRotationalVelocity(2);
         }
         else {
             rob.setRotationalVelocity(0);
@@ -57,28 +57,12 @@ public class Helpers {
 
     }
 
-//    public static void orientate(Agent rob, double leftIntensity, double rightIntensity){
-//        rob.setRotationalVelocity((leftIntensity - rightIntensity) * 15);
-//    }
-
-//    public static void turnAround(MyRobot rob) {
-//        rob.setRotationalVelocity(2);
-//    }
 
     public static void stopRobot(MyRobot rob) {
         rob.setRotationalVelocity(0);
         rob.setTranslationalVelocity(0);
     }
 
-//    public static void chooseAction(Agent rob, double centerIntensity, double leftIntensity, double rightIntensity) {
-//        if (Math.abs(rightIntensity - leftIntensity) > 0.0001) {
-//            orientate(rob, leftIntensity, rightIntensity);
-//        } else if (centerIntensity > leftIntensity) {
-//            turnAround(rob);
-//        } else {
-//            goForward(rob);
-//        }
-//    }
 
     public static Point3d getSensedPoint(MyRobot rob,RangeSensorBelt sonars,int sonar){
       double v;
