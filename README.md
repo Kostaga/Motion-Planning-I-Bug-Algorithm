@@ -2,17 +2,20 @@
 ![image](https://github.com/Kostaga/Motion-Planning-I-Bug-Algorithm/assets/59094550/3d5b4979-375e-44cd-a74d-8c29fae0a555)
 
 
-https://github.com/Kostaga/Motion-Planning-I-Bug-Algorithm/assets/59094550/08528c42-799f-4055-8391-cf5b74059f7c
 
 
 
-https://github.com/Kostaga/Motion-Planning-I-Bug-Algorithm/assets/59094550/ee2e634d-721b-4a17-a90e-78d8adbd90b4
+https://github.com/Kostaga/Motion-Planning-I-Bug-Algorithm/assets/59094550/49c5edde-ce8f-480c-920e-6b46517f92fd
 
 
 
-https://github.com/Kostaga/Motion-Planning-I-Bug-Algorithm/assets/59094550/c5adafc2-0f42-49ad-9c41-f6ce8183fe4a
+https://github.com/Kostaga/Motion-Planning-I-Bug-Algorithm/assets/59094550/73dfc0d6-9dd8-417f-8ebb-5637e08ecac1
 
 
 
-https://github.com/Kostaga/Motion-Planning-I-Bug-Algorithm/assets/59094550/55e7c8a9-1662-4499-90cd-39aff7d4eed0
+https://github.com/Kostaga/Motion-Planning-I-Bug-Algorithm/assets/59094550/c26bac8c-ada1-4f69-8fbd-9993cebfe695
+
+
+
+https://github.com/Kostaga/Motion-Planning-I-Bug-Algorithm/assets/59094550/0f785958-f327-4fc4-af40-a5c27e529655
 
