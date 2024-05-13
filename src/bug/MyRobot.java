@@ -18,6 +18,7 @@ public class MyRobot extends Agent {
     double intensity1;
     double intensity2;
     double intensity3;
+
     double iL;
     double iH;
 
@@ -45,20 +46,6 @@ public class MyRobot extends Agent {
 
     }
 
-    public void setiL(double iL) {
-        this.iL = iL;
-    }
-
-    public double getiL() {
-        return this.iL;
-    }
-    public void setiH(double iH) {
-        this.iH = iH;
-    }
-    public double getiH() {
-        return this.iH;
-    }
-
 
     public RobotStatus getStatus() {
         return MyRobot.status;
@@ -84,7 +71,8 @@ public class MyRobot extends Agent {
         }
         switch (status) {
             case ORIENTATION:
-                System.out.println("Orientate");
+                iL = clIntensity;
+//                System.out.println("Orientate");
                 orientate(this, llIntensity, rlIntensity, clIntensity);
                 break;
             case FORWARD:

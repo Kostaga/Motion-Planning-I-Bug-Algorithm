@@ -14,17 +14,14 @@ public class Helpers {
 
     static double SAFETY = 0.8;
 
-    public static void goForward(MyRobot rob, RangeSensorBelt sonars, double centerIntensity){
-
-        rob.setTranslationalVelocity(3);
-
-        if (rob.getiL() != centerIntensity)
-            rob.setiH(centerIntensity);
+    public static void goForward(MyRobot rob, RangeSensorBelt sonars){
         if (bumped(sonars)) {
             MyRobot.status = MyRobot.RobotStatus.FOLLOWING;
-            rob.setiL(1);
         }
-
+        else {
+            rob.setTranslationalVelocity(3);
+            MyRobot.status = MyRobot.RobotStatus.ORIENTATION;
+        }
     }
 
     public static boolean bumped( RangeSensorBelt sonars){
