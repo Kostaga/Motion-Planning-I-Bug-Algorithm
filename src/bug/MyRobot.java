@@ -76,8 +76,7 @@ public class MyRobot extends Agent {
         // Finding the local maximum using 3 intensities (page 3 ik−1 > ik−2 and ik−1 > ik)
         intensity1 = intensity2;
         intensity2 = intensity3;
-        intensity3 = clIntensity;
-
+        intensity3 = Math.round(clIntensity*100000.0)/100000.0;
 
 
         if (clIntensity > GOAL) {
@@ -89,17 +88,20 @@ public class MyRobot extends Agent {
                 orientate(this, llIntensity, rlIntensity, clIntensity);
                 break;
             case FORWARD:
-                System.out.println("Forward");
-                goForward(this, sonars,clIntensity);
+//                System.out.println("Forward");
 
+                goForward(this, sonars);
+                clIntensity = Math.pow(centerLight.getLux(),0.1);
+                if (iL != clIntensity) {
+                    iH = clIntensity;
+                }
                 break;
             case FOLLOWING:
-                System.out.println("Following");
-                circumNavigate(this, sonars, false, clIntensity);
-                if (clIntensity > iH && intensity2 > intensity1 && intensity2 > intensity3) {
-                    MyRobot.status = RobotStatus.ORIENTATION;
-                    setiL(0);
-                }
+//                System.out.println("Following");
+                circumNavigate(this, sonars, false);
+                if (clIntensity > iH && intensity3 < intensity2 && intensity2 > intensity1 && clIntensity > iL)
+                    status = RobotStatus.ORIENTATION;
+
                 break;
 
             case END:

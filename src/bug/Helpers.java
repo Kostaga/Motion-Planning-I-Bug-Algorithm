@@ -29,7 +29,7 @@ public class Helpers {
 
     public static boolean bumped( RangeSensorBelt sonars){
 
-        int[] hits = {0,1,6,7};
+        int[] hits = {0,1,2,6,7};
         for (int i : hits) {
             if (sonars.getMeasurement(i) < 1) {
                 return true;
@@ -41,7 +41,6 @@ public class Helpers {
 
     public static void orientate(MyRobot rob, double leftIntensity, double rightIntensity, double centerIntensity){
         rob.setTranslationalVelocity(0);
-
 
         if (Math.abs(rightIntensity - leftIntensity) > 0.001) {
             rob.setRotationalVelocity(Math.signum(leftIntensity - rightIntensity) * 0.5);
@@ -81,7 +80,7 @@ public class Helpers {
             return a+Math.PI*2;
         return a;
     }
-    public static void circumNavigate(MyRobot rob, RangeSensorBelt sonars, boolean CLOCKWISE, double centerIntensity){
+    public static void circumNavigate(MyRobot rob, RangeSensorBelt sonars, boolean CLOCKWISE){
         int min;
         min=0;
         for (int i=1;i<sonars.getNumSensors();i++)

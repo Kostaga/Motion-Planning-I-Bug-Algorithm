@@ -16,14 +16,14 @@ import simbad.sim.*;
 public class Env extends EnvironmentDescription {
     Env(){
         this.light1IsOn = true; // Goal Light
-        this.light1Position = new Vector3d(6,2,0);
+        this.light1Position = new Vector3d(0,2,-3);
         this.light2IsOn = false;
         this.ambientLightColor = new Color3f(0,0,0);
-//        spiral(this);
+        spiral(this);
 //        spheres(this);
 //        bottle(this);
-        box(this);
-        add(new MyRobot(new Vector3d(-6, 0, 0), "robot 1"));
+//        box(this);
+        add(new MyRobot(new Vector3d(-6, 0, 5), "robot 1"));
     }
 
 
