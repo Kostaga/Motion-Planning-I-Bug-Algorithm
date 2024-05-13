@@ -1,21 +1,17 @@
 # I-Bug implementation using simbad
 ![image](https://github.com/Kostaga/Motion-Planning-I-Bug-Algorithm/assets/59094550/3d5b4979-375e-44cd-a74d-8c29fae0a555)
 
+https://github.com/Kostaga/Motion-Planning-I-Bug-Algorithm/assets/59094550/49a8fd86-59a3-4808-84d9-fb73d77e14fd
 
 
 
-
-https://github.com/Kostaga/Motion-Planning-I-Bug-Algorithm/assets/59094550/49c5edde-ce8f-480c-920e-6b46517f92fd
-
-
-
-https://github.com/Kostaga/Motion-Planning-I-Bug-Algorithm/assets/59094550/73dfc0d6-9dd8-417f-8ebb-5637e08ecac1
+https://github.com/Kostaga/Motion-Planning-I-Bug-Algorithm/assets/59094550/597cf2fa-4712-49d0-a0aa-735854bd8f36
 
 
 
-https://github.com/Kostaga/Motion-Planning-I-Bug-Algorithm/assets/59094550/c26bac8c-ada1-4f69-8fbd-9993cebfe695
+https://github.com/Kostaga/Motion-Planning-I-Bug-Algorithm/assets/59094550/fd87c6dd-d30e-4327-a621-dd91523bdc80
 
 
 
-https://github.com/Kostaga/Motion-Planning-I-Bug-Algorithm/assets/59094550/0f785958-f327-4fc4-af40-a5c27e529655
+https://github.com/Kostaga/Motion-Planning-I-Bug-Algorithm/assets/59094550/d363f1e5-539b-4bd2-ac73-48fe72c3af02
 
